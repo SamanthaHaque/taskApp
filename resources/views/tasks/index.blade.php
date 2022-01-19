@@ -3,7 +3,7 @@
 
 @section('contents')
 
-<button class="btn btn-success"><a href="{{ url('/tasks/create') }}">Add New Tasks</a></button>
+<button class="btn btn-success button"><a href="{{ url('/tasks/create') }}">Add New Tasks</a></button>
     
 
 <hr>
@@ -30,11 +30,11 @@
                    <td> {{  App\Enums\taskStatus::getDescription($c->status)}} </td>
                    <td class="action" style="display: flex;">
                      <div class="update" style="margin: 5px;">
-                        <a href="{{url("/categories/$c->id/edit")}}" class="btn btn-warning">Update</a>
+                        <a href="{{url("/tasks/$c->id/edit")}}" class="btn btn-warning">Update</a>
                      </div>
                      
                      <div class="delete" style="margin: 5px;">
-                        <form action="{{url("/categories/$c->id")}}" method="post">
+                        <form action="{{url("/tasks/$c->id")}}" method="post">
                             @csrf
                             @method("delete")
                             <input type="submit" value="delete" onclick="return confirm('Do you want to delete the category?')" class="btn btn-danger">

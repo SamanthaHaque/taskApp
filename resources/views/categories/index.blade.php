@@ -3,7 +3,7 @@
 
 @section('contents')
 
-<button class="btn btn-success"><a href="{{ url('/categories/create') }}">Add New Category</a></button>
+<button class="btn btn-success button"><a href="{{ url('/categories/create') }}">Add New Category</a></button>
     
 
 <hr>

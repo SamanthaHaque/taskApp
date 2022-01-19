@@ -18,7 +18,7 @@ class TaskController extends Controller
      */
     public function index()
     {
-        $data["Task"] = Task::where('created_by',Auth::id())->get();
+        $data["Task"] = Task::where('created_by', Auth::id())->get();
         return view("tasks.index", $data);
     }
 
@@ -70,21 +70,41 @@ class TaskController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+
+
     public function edit($id)
     {
-        //
+        $task = Task::where('created_by', Auth::id())->find($id);
+        if (!$task) {
+            return redirect('/tasks');
+        }
+        $data["task"] = $task;
+        $data["task_status"] = TaskStatus::asSelectArray();
+        $data["categories_list"] = Category::where('created_by', Auth::id())->get();
+        return view("tasks.edit", $data);
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+    //  * @param  \Illuminate\Http\Request  $request
+    //  * @param  int  $id
+    //  * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(taskRequest $request, $id)
     {
-        //
+        $task = Task::where('created_by', Auth::id())->find($id);
+        if (!$task) {
+            return redirect('/task');
+        }
+
+        $task->name = $request->name;
+        $task->category_id = $request->category_id;
+        $task->details = $request->details;
+        $task->deadline = $request->deadline;
+        $task->status = $request->status;
+        $task->save();
+        return redirect('/tasks');
     }
 
     /**
@@ -95,6 +115,11 @@ class TaskController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $task = Task::where('created_by', Auth::id())->find($id);
+        if (!$task) {
+            return redirect('/tasks');
+        }
+        $task->delete();
+        return redirect('/tasks');
     }
 }

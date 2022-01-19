@@ -27,6 +27,9 @@ Route::resource("/categories", CategoryController::class)->middleware('auth');
 Route::get('/tasks', [TaskController::class, 'index'])->middleware(['auth']);
 Route::get('/tasks/create', [TaskController::class, 'create'])->middleware(['auth']);
 Route::post('/tasks', [TaskController::class, 'store'])->middleware(['auth']);
+Route::get('/tasks/{id}/edit', [TaskController::class, 'edit'])->middleware(['auth']);
+Route::put('/tasks/{id}', [TaskController::class, 'update'])->middleware(['auth']);
+Route::delete('/tasks/{id}', [TaskController::class, 'destroy'])->middleware(['auth']);
 
 
 Route::get('/', function () {

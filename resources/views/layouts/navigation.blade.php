@@ -1,11 +1,11 @@
-<nav class="navbar navbar-default">
+<nav class="navbar navbar-inverse">
     <div class="container-fluid">
       <div class="navbar-header">
-        <a class="navbar-brand" href="#">WebSiteName</a>
+        <a class="navbar-brand active" href="#">Tasker</a>
       </div>
       <ul class="nav navbar-nav">
-        <li class="active"><a href="#">Home</a></li>
-        <li><a href="#">Task</a></li>
+        <li class="active"><a href="{{'/tasks'}}">Home</a></li>
+        <li><a href="{{'/tasks'}}">Task</a></li>
         <li><a href="{{'/categories'}}">Category</a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
